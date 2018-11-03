@@ -1,0 +1,9 @@
+<launch>    
+
+    <param name="motor_first"                   value="/motor_3"/>
+    <param name="motor_second"                   value="/motor_4"/>
+
+    <!-- mobile robot motor node -->
+    <node name="mobile_robot_motor2" pkg="mobile_robot" type="mobile_robot_motor" output="screen"/>
+
+</launch>
