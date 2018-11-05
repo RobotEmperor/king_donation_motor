@@ -82,7 +82,7 @@ void initialize()
   motor1->check_position = true;  
   motor2->check_position = true;
 }
-void motor1_encoder_1(void)
+/*void motor1_encoder_1(void)
 {
   motor1->encoder_pulse1 ++;
   motor1->encoder_pulse_position1 ++;
@@ -102,7 +102,7 @@ void motor2_encoder_2(void)
 {
   motor2->encoder_pulse2 ++;
   motor2->encoder_pulse_position2 ++;
-}
+}*/
 //
 void motor_first_command_callback(const mobile_robot::motor_cmd::ConstPtr& msg)
 {
@@ -153,13 +153,14 @@ void controlFunction(const ros::TimerEvent&)
   pwmWrite(motor1_PWM, (int) motor1->pwm_value_motor);
   pwmWrite(motor2_PWM, (int) motor2->pwm_value_motor);
 
-  printf("motor1->pwm_value_motor:: %f \n", motor1->pwm_value_motor);
-  printf("motor2->pwm_value_motor:: %f \n", motor2->pwm_value_motor);
+  //printf("motor1->pwm_value_motor:: %f \n", motor1->pwm_value_motor);
+  //printf("motor2->pwm_value_motor:: %f \n", motor2->pwm_value_motor);
 
 }
 int main (int argc, char **argv)
 {
 
+  printf("Motor node Start \n");
   wiringPiSetupGpio();
 
   initialize();
@@ -186,8 +187,8 @@ int main (int argc, char **argv)
   pinMode(motor2_FG1, INPUT);
 
 
-  wiringPiISR(motor1_FG1, INT_EDGE_RISING, &motor1_encoder_1);
-  wiringPiISR(motor2_FG1, INT_EDGE_RISING, &motor2_encoder_1);
+ // wiringPiISR(motor1_FG1, INT_EDGE_RISING, &motor1_encoder_1);
+ // wiringPiISR(motor2_FG1, INT_EDGE_RISING, &motor2_encoder_1);
 
   pinMode(motor1_PWM, PWM_OUTPUT);
   pinMode(motor2_PWM, PWM_OUTPUT);
