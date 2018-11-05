@@ -148,14 +148,6 @@ void controlFunction(const ros::TimerEvent&)
 
   motor_control(motor1_PWM, motor1_DIR, 0, motor1->speed_motor, 0, motor1->onoff, motor1, tra_motor1);
   motor_control(motor2_PWM, motor2_DIR, 0, motor2->speed_motor, 0, motor2->onoff, motor2, tra_motor2);
-
-
-  pwmWrite(motor1_PWM, (int) motor1->pwm_value_motor);
-  pwmWrite(motor2_PWM, (int) motor2->pwm_value_motor);
-
-  //printf("motor1->pwm_value_motor:: %f \n", motor1->pwm_value_motor);
-  //printf("motor2->pwm_value_motor:: %f \n", motor2->pwm_value_motor);
-
 }
 int main (int argc, char **argv)
 {
@@ -207,6 +199,11 @@ int main (int argc, char **argv)
 
   while(ros::ok())
   {
+    pwmWrite(motor1_PWM, (int) motor1->pwm_value_motor);
+    pwmWrite(motor2_PWM, (int) motor2->pwm_value_motor);
+
+    printf("motor1->pwm_value_motor:: %f \n", motor1->pwm_value_motor);
+    printf("motor2->pwm_value_motor:: %f \n", motor2->pwm_value_motor);
     usleep(100);
     ros::spinOnce();
   }
